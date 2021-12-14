@@ -23,15 +23,25 @@ function add_page_template_to_plugin($templates)
 }
 
 function wpb_test_shortcode() { 
-$message = 'Hello world!'; 
-return $message;
+	$atts='<form method="post" action="">';
+	$atts.='<lable>NAME</lable>';
+	$atts.='<input type="text" name="name"  class="name" placeholder="Enter your name" required><br><br>';
+	$atts.='<lable>EMAIL</lable>';
+	$atts.='<input type="email" name="mail"  class="mail" placeholder="Enter your email" required><br><br>';
+	$atts.='<lable>PSW</lable>';
+	$atts.='<input type="password" name="psw"  class="psw" placeholder="Enter your password" required><br><br>';
+	$atts.='<lable>FILE</lable>';
+	$atts.='<input type="file" name="file"  class="file"  required><br><br>';
+	$atts.='<input type="submit">';
+	$atts.='</form>';
+	return $atts;
 } 
-add_shortcode('testing', 'wpb_test_shortcode');
+add_shortcode('my_custom_shortcode', 'wpb_test_shortcode');
 
 //add page when plugin activate 
 function create_page(){
 	$page_title='form';
-	$post_content='form_content';
+	$post_content='[my_custom_shortcode]';
 	$form=array(
 		'post_title'=>$page_title,
 		'post_content'=>$post_content,
